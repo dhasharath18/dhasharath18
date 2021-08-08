@@ -1,0 +1,38 @@
+<ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+
+<ion-content #content padding>
+   
+      <ion-grid >
+        <ion-row  *ngFor="let userChat of chatData"> 
+          <ion-col size="9" *ngIf="userChat.admin_id=='0'" class="message other-message">
+            <div class="msg">
+            {{unescape(userChat.message)}}
+            <div class="time" text-right>
+              {{userChat.now | date:' d MMM y h:mm a'}}
+            </div>
+          </div>
+          </ion-col>
+          <ion-col offset="7" size="9" *ngIf="userChat.admin_id!=='0'"  class="message my-message">
+            <div class="msg">
+           {{unescape(userChat.message)}}
+            <div class="time" text-right>
+              {{userChat.now | date:' d MMM y h:mm a'}}
+            </div>
+          </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-content>
+  <div class="chat-footer">
+    <ion-item>
+      <ion-textarea type="text" placeholder="Type Message here"  [(ngModel)]="message"></ion-textarea>
+      <ion-button icon-only clear item-right type="button"(click)="sendMsg()" [disabled]="!message" tappable>
+        <ion-icon   name="send" color="myblue"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+  <ion-footer>
+    <app-footer></app-footer>
+  </ion-footer>

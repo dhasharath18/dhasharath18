@@ -1,0 +1,96 @@
+
+    
+    .date{
+        text-align: end;
+    }
+    .cent{
+        text-align: center;
+    }
+    .mt-20{
+        margin-top: 20px;
+    }
+    .font-12{
+        font-size: 12px;
+    }
+     .cell-class {
+         border-color: black; 
+         border-width: .01em; 
+         border-style:solid;
+        // background-color: lightgrey
+       }
+       .ran{
+           background-color:  #6c757d!important;
+           font-size: 16px;
+           color:#fff
+       }
+       .ranp{
+         background-color:  #6c757d!important;
+         margin: 0 -4px;
+         color:#fff;
+         padding: 4px;
+         margin: 0 -4px;
+         margin-top: -4px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+       }
+       .mat-expansion-panel-body {
+         padding: 0;
+     }
+     .rem{
+         padding: 4px;
+         margin: 20px 5px;
+     }
+
+     .b-t-0{border-top:0;}
+     .b-b-0{border-bottom:0;}
+     .grade{
+         color: blue
+     }
+
+    .incharge{
+        float:right;
+    }
+   
+    .prince{
+     font-size: 50px;
+     height: 40px;
+    }
+    .lower-content {
+     flex-grow: 1;
+     display: flex;
+     margin-top: 50px;
+     align-items: flex-end;
+     justify-content:  flex-end;
+     color: blue;
+   }
+   .first-content {
+     flex-grow: 1;
+     display: flex;
+     margin-top: 50px;
+     align-items: flex-end;
+     justify-content:  flex-start;
+     color: blue;
+   }
+   
+  
+  .mt-0{margin-top:0;}
+   .mb-0{margin-bottom: 0;}
+   .mb-10{margin-bottom: -10px;}
+   .lower-content img{height:50px;
+    color: blue;}
+  
+   .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+hr{
+    border-bottom: 1px solid #000;
+    margin: 20px 20px 0;
+ } 
+.mb-20{margin-bottom:20px;}
+
+.cellsize{
+    font-size: 14px;
+}

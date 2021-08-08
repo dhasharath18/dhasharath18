@@ -1,0 +1,59 @@
+<ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+<ion-content>
+  <mat-expansion-panel class="panel" *ngFor="let item of feeType">
+    <mat-expansion-panel-header >
+      <mat-panel-title >
+      {{item.value.title}}
+      </mat-panel-title>
+     
+    </mat-expansion-panel-header>
+   
+     <ion-grid > 
+        <ion-row>
+            <ion-col size="5">
+              <strong>
+            Due  Date
+            </strong>
+            </ion-col><br>
+            <ion-col size="4">
+                <strong>
+           Amount
+                </strong>
+            </ion-col>
+            <ion-col size="3">
+                <strong>
+              Status
+             </strong>
+            </ion-col>
+          </ion-row>
+
+        <ion-row class="date" *ngFor="let term of item.value.terms_data;let i=index">
+          <ion-col size="5">
+            <div>
+             {{term.date}}
+            </div>
+          </ion-col><br>
+          <ion-col size="4">
+            <div>
+              ₹ {{ term.amount}}
+            </div>
+          </ion-col>
+          <ion-col size="3">
+<span><a *ngIf="term.pay"  (click)="goToPaymentPage({amount:term.pay,term:i+1,ftype:item.key})">
+  Pay</a>
+</span> 
+            <span *ngIf="!term.pay">  {{term.status}}</span>
+          </ion-col> 
+           
+        </ion-row>
+      </ion-grid> 
+    </mat-expansion-panel>
+<br>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>
+

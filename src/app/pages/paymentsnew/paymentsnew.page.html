@@ -1,0 +1,35 @@
+<ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item >
+      <ion-label> Select Fee Type</ion-label>
+      <ion-select [(ngModel)]="selectedFeeType" (ngModelChange)="changeFeeType($event)" [compareWith]="compareWith">
+        <ion-select-option *ngFor="let fType of feeTypes" value="{{fType.key}}">{{fType.value.title}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Select Month/Term</ion-label>
+      <ion-select [(ngModel)]="selectedTerm" (ngModelChange)="changeMonth($event)" [compareWith]="compareWith">
+        <ion-select-option *ngFor="let m of terms; let i = index" value="{{i+1}}" [disabled]="terms[i].pay<1">Term
+          {{i+1}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+  <div *ngIf="paymentAmount>0">
+    <h2 > Amount : Rs.{{paymentAmount}}</h2>
+    <br>
+    <ion-button type="submit" (click)="pay()" expand="block" color="primary">Pay</ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

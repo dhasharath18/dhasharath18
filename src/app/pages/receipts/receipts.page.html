@@ -1,0 +1,96 @@
+<ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+
+<ion-content padding>
+   <ion-card class="card" *ngFor="let r of receiptData">
+    <ion-grid>
+    
+      <ion-row>
+        <ion-col size="5">
+          Receipt No.
+        </ion-col>
+        <ion-col size="1">
+          :
+        </ion-col>
+    
+        <ion-col size="6">
+          {{r.receipt_no?r.receipt_no:r.id}}
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+    
+        <ion-col size="5">
+          Date
+        </ion-col>
+    
+        <ion-col size="1">
+          :
+        </ion-col>
+        <ion-col size="6">
+          {{r.now |date:"dd/MM/yyyy"}}
+        </ion-col>
+    
+      </ion-row>
+      <ion-row>
+    
+        <ion-col size="5">
+          Fee Type
+        </ion-col>
+    
+        <ion-col size="1">
+          :
+        </ion-col>
+        <ion-col size="6">
+          {{r.title?r.title:'TUITION FEE'}}
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+    
+        <ion-col size="5">
+          Amount
+        </ion-col>
+    
+        <ion-col size="1">
+          :
+        </ion-col>
+    
+        <ion-col size="6">
+          ₹ {{r.amount ?  r.amount :0}}
+        </ion-col>
+    
+      </ion-row>
+      <ion-row>
+    
+        <ion-col size="5">
+          Pay.Mode
+        </ion-col>
+    
+        <ion-col size="1">
+          :
+        </ion-col>
+        <ion-col size="6">
+          {{paymentMode[r.payment_type]}}
+        </ion-col>
+    
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">
+          Term/Month 
+        </ion-col>
+        <ion-col size="1">
+          :
+        </ion-col>
+        <ion-col size="6" >{{r.ay_id>5 ? r.month_upto:months[r.month_upto]}} {{r.ay_id>5?(r.title=='TUITION FEE'?' - Month ':' - Term '):''}}
+        </ion-col>
+      </ion-row>
+    
+    
+    </ion-grid>
+    </ion-card>
+    </ion-content>
+    <ion-footer>
+      <app-footer></app-footer>
+    </ion-footer>

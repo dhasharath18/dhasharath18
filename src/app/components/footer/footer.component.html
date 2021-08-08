@@ -1,0 +1,35 @@
+<ion-toolbar color="primary">
+  <ion-grid>
+   
+    <ion-row >
+        <ion-col size="4">
+          <ion-buttons justify-content-center align-items-center style="flex-direction: column">
+            <ion-icon  class="size" name="home"></ion-icon>
+          <ion-button icon-only clear (click)="gotoPage('/menu/profile')">
+            Profile
+          </ion-button>
+        </ion-buttons>
+       
+        </ion-col>
+        <ion-col size="4">
+          <ion-buttons justify-content-center align-items-center style="flex-direction: column">
+            <ion-icon  class="size" name="cash"></ion-icon>
+          <ion-button icon-only clear
+            (click)="gotoPage(academeicaid && academeicaid > 5 ?'/menu/paymentsnew':'/menu/payments')">
+            Payment
+          </ion-button>
+        </ion-buttons>
+        </ion-col>
+
+        <ion-col  size="4">
+          <ion-buttons justify-content-center align-items-center style="flex-direction: column">
+            <ion-icon class="size" name="mail"></ion-icon>
+          <ion-button icon-only clear (click)="gotoPage('/menu/chat')">
+            Chat
+          </ion-button>
+        </ion-buttons>
+        </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-toolbar>

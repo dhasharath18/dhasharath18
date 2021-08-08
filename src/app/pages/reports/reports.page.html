@@ -1,0 +1,249 @@
+ <ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+
+<ion-content>
+   <div *ngIf="examdata">
+    <ng-container *ngFor="let e of examdata; let i=index" >
+      <hr *ngIf="i!=0">
+         <mat-expansion-panel class="mt-20 {{examdata.length==i+1?'mb-20':''}}" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+         {{e.title}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+     
+        <!-- **********//////STUDENT DETAILS\\\\****** -->
+  <br>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="5">
+                Name
+              </ion-col>
+              <ion-col size="1">
+                :
+              </ion-col>
+              <ion-col size="5">
+                {{studentdetail.student_name}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5">
+                Admission No.
+              </ion-col>
+              <ion-col size="1">
+                :
+              </ion-col>
+              <ion-col size="5">
+                {{studentdetail.admission_no}}
+              </ion-col>
+            </ion-row>
+          
+            <ion-row>
+              <ion-col size="5">
+                Class
+              </ion-col>
+              <ion-col size="1">
+                :
+              </ion-col>
+              <ion-col size="5">
+                {{studentdetail.class}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5">
+                Section
+              </ion-col>
+              <ion-col size="1">
+                :
+              </ion-col>
+              <ion-col size="5">
+                {{studentdetail.section}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5">
+                Roll No.
+              </ion-col>
+              <ion-col size="1">
+                :
+              </ion-col>
+              <ion-col size="5">
+                {{studentdetail.roll_no}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5" >
+              Date
+              </ion-col>
+              <ion-col size="1" >
+                : 
+              </ion-col>
+              <ion-col size="5">
+                {{e.report_date|date:"dd-MM-yyyy"}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+              <!-- ******TABLE FOR MARKS******* -->
+  
+            <ion-grid class="tab5-content" >
+              <ion-row class="ran">
+                <ion-col size="1" class="cell-class b-b-0">#</ion-col>
+                <ion-col size="3" class="cell-class b-b-0"> Subject</ion-col>
+                <ion-col size="6" class="cell-class flex" class="cent"> Marks</ion-col>
+                <ion-col size="2" class="cell-class b-b-0 flex">Rank</ion-col>
+              </ion-row>
+              <ion-row class="ran">
+                <ion-col size="1" class="cell-class b-t-0"></ion-col>
+                <ion-col size="3" class="cell-class b-t-0"> </ion-col>
+                <ion-col size="2" class="cell-class font-12 flex">Max. </ion-col>
+                <ion-col size="2" class="cell-class font-12 flex">Scored</ion-col>
+                <ion-col size="2" class="cell-class font-12 flex">Top</ion-col>
+                <ion-col size="2" class="cell-class b-t-0"></ion-col>
+              </ion-row>
+            
+              <ion-row *ngFor="let s of e.subjects; let i=index">
+                <ion-col size="1" class="cell-class flex" >{{i+1}}</ion-col>
+                <ion-col size="3" class="cell-class cellsize">{{unescape(s.title)}}</ion-col>
+                <ion-col size="2" class="cell-class flex" text-center>
+                  {{s.max_marks}}
+                </ion-col>
+                <ion-col size="2" class="cell-class flex"  >
+                  {{s.marks}}
+                </ion-col>
+                <ion-col size="2" class="cell-class flex" text-center> {{s.topper}}
+                </ion-col>
+                <ion-col size="2" class="cell-class flex" text-center> {{s.rank}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4" class="cell-class flex" text-center>Total</ion-col>
+                <ion-col size="2" class="cell-class flex" text-center>{{e.total_max_marks}}</ion-col>
+                <ion-col size="2" class="cell-class flex" text-center>{{e.total_marks}}</ion-col>
+                <ion-col size="4" class="cell-class flex" text-center>{{e.rank}}</ion-col>
+              </ion-row>
+            </ion-grid>
+  
+           <!-- *********////PERCENTAGE\\\\********* -->
+  
+            <ion-grid class="tab5-content mt-20">
+              <ion-row class="ran">
+                <ion-col size="5"    class="cell-class flex"> Percentage </ion-col>
+                <ion-col size="4" class="cell-class flex">Grade</ion-col>
+                <ion-col size="3" class="cell-class flex">Remarks</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="5" class="cell-class flex" text-center> {{e.percentage}} </ion-col>
+                <ion-col size="4" class="cell-class flex" text-center>{{e.grade}}</ion-col>
+                <ion-col size="3" class="cell-class flex" text-center>--</ion-col>
+              </ion-row>
+            </ion-grid>
+  
+            <!-- **********//////ATTENDANCE\\\****** -->
+              <ion-grid class="tab5-content mt-20">
+                <ion-row class="ran">
+                  <ion-col  size="8" class="cell-class flex"> No. Of Working Days </ion-col>
+                  <ion-col  size="2" class="cell-class flex"text-center>{{e.working_days}}</ion-col>
+                  <ion-col  size="2" class="cell-class flex">(%)</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col  size="8" class="cell-class flex"> No. Of Days Present </ion-col>
+                  <ion-col  size="2" class="cell-class flex" text-center>{{e.attendance?e.attendance:0}}</ion-col>
+                   <ion-col  size="2" class="cell-class flex" text-center>{{e.working_days !='0' ? getFixed((e.attendance/e.working_days)*100)+'%':'--'}}</ion-col>
+                </ion-row>
+              </ion-grid>
+                
+                <!-- **********//////TOPPER DETAILS\\\\****** -->
+  
+                  <ion-grid class="tab5-content mt-20">
+                    <ion-row class="ran">
+                      <ion-col  size="2" class="cell-class"> Rank </ion-col>
+                      <ion-col  size="4" class="cell-class">Class Toppers</ion-col>
+                      <ion-col  size="2" class="cell-class">Sec.</ion-col>
+                      <ion-col  size="2" class="cell-class">Roll No.</ion-col>
+                      <ion-col  size="2" class="cell-class">(%)</ion-col>
+                    </ion-row>
+                    <ion-row *ngFor="let t of e.toppers">
+                      <ion-col  size="2" class="cell-class flex" text-center> {{t.rank}}</ion-col>
+                      <ion-col size="4" class="cell-class cellsize flex" text-center > {{t.student_name}}</ion-col>
+                      <ion-col  size="2" class="cell-class flex" text-center>{{studentdetail.section?studentdetail.section:"NA"}}</ion-col>
+                      <ion-col  size="2" class="cell-class flex" text-center>{{t.roll_no}}</ion-col>
+                      <ion-col  size="2" class="cell-class flex" text-center>{{t.percentage}}</ion-col>
+                    </ion-row> 
+                  </ion-grid>
+                
+             <!-- **********//////REMARKS\\\\****** -->
+         
+          <div style="border:1px solid #e3e3e3;min-height:100px;" class="rem mt-20">
+            <h5 class="ranp ">Remarks</h5>
+            <ng-container *ngFor="let r of e.remarks_1">
+            <p> {{r}}</p>
+          </ng-container>
+            <p class="first-content">Class Teacher<span class="lower-content">Incharge</span></p>
+          </div>
+  
+          <div style="border:1px solid #e3e3e3;min-height:100px;" class="rem mt-20 ">
+            <h5 class="ranp ">Remarks</h5>
+            <ng-container *ngFor="let r of e.remarks_2">
+              <p> {{r}}</p>
+            </ng-container>
+            <p class="lower-content mb-10"> <img src="https://sjshabsiguda.org/img/principal-sign/1/1/principal-sign.jpg"></p>
+            <p class="lower-content mt-0">Principle</p>
+          </div>
+  
+          <!-- **********//////ACKNOWLEDGEMENT\\\\****** -->
+  
+          <div style="border:1px solid #e3e3e3;min-height:100px;" class="rem mt-20">
+            <h5 class="ranp flex" >Acknowledgement</h5>
+            <p>Reviewed Marks List of our {{studentdetail.gender=="F"?"Daughter":"son"}},  {{studentdetail.student_name}} </p>
+            <p class="first-content">Date:<span class="lower-content">Parent</span></p>
+          </div>
+  
+          <!-- **********//////ADDRESS\\\\****** -->
+  
+          <div style="border:1px solid #e3e3e3;min-height:100px;" class="rem mt-20">
+            <h5 class="ranp flex" text-center>Address</h5>
+              <p> {{studentdetail.address}}</p>
+          </div>
+  
+          <!-- **********//////GRADES\\\\****** -->
+        <ion-grid class="mt-20">
+      
+            <ion-row class="ran ">
+              <ion-col  size="6" class="cell-class flex"> Range </ion-col>
+              <ion-col  size="6" class="cell-class flex">Grade</ion-col>
+             
+            </ion-row>
+       
+            <ion-row >
+              <ion-col  size="6" class="cell-class flex"> 90% - 100%</ion-col>
+              <ion-col  size="6" class="cell-class flex">A+</ion-col>
+             
+            </ion-row>
+            <ion-row >
+              <ion-col  size="6" class="cell-class flex"> 80% - 89%</ion-col>
+              <ion-col  size="6" class="cell-class flex">A</ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col  size="6" class="cell-class flex"> 70% - 79%</ion-col>
+              <ion-col  size="6" class="cell-class flex">B+</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col  size="6" class="cell-class flex"> 60% - 69%</ion-col>
+              <ion-col  size="6" class="cell-class flex">B</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col  size="6" class="cell-class flex"> 50% - 59%</ion-col>
+              <ion-col  size="6" class="cell-class flex">C</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col  size="6" class="cell-class flex"> 0% - 39%</ion-col>
+              <ion-col  size="6" class="cell-class flex">D</ion-col>
+            </ion-row>
+        </ion-grid>  
+       </mat-expansion-panel>  
+       </ng-container>
+      </div> 
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer> 

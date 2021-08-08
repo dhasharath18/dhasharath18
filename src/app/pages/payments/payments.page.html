@@ -1,0 +1,28 @@
+<ion-header>
+  <app-header [data]="headerData"></app-header>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="monthsData">
+    <ion-item>
+      <ion-label>Select Month</ion-label>
+      <ion-select  (ionChange)="onChange($event)">
+        <ion-select-option *ngFor="let m of months; let i = index" value="{{m.id}}"
+          [disabled]="monthsData.last_payment != null && (academicId < monthsData.last_payment.ay_id || m.id<=monthsData.last_payment.month_upto)  ? true : false">
+          {{m.value}} {{monthsData.last_payment != null && m.id<=monthsData.last_payment.month_upto ? '(paid)' : '' }}
+            </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="amount">
+    <h2 class="amount">Amount : Rs.{{amount}}</h2>
+
+    <br>
+    <ion-button type="submit" (click)="pay()" expand="block" color="primary">Pay</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

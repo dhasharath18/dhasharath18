@@ -1,0 +1,168 @@
+<ion-header>
+  <!-- <app-header [data]="headerData"></app-header>  -->
+  <app-header [data]="headerData"></app-header> 
+</ion-header> 
+
+
+<ion-content>
+ <div *ngIf="profileData">
+   <div class="imgStyle" *ngIf="profileData.image">
+     <img style="max-height: 100px" src="https://sjshabsiguda.org/img/student/1/1/{{profileData.image}} "
+       onerror="this.onerror=null;this.src='assets/images/avatar.png';">
+   </div>
+   
+ <ion-grid>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Student Name
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.student_name ? profileData.student_name : 'N/A'}}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Admission No.
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.admission_no ? profileData.admission_no : 'N/A'}}
+     </ion-col>
+ 
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Roll No.
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.roll_no ? profileData.roll_no : 'N/A'}}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Class
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{academicId < 6 ? profileData.cls :profileData.class}}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Section
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.section?profileData.section :profileData.sec}}
+     </ion-col>
+   </ion-row>
+   
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Date Of Birth
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.dob?(profileData.dob|date:"dd-MM-yyyy"):"NA" }}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Gender
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.gender ? profileData.gender : 'NA'}}
+     </ion-col>
+   </ion-row>
+ 
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Father's Name
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.father ? profileData.father : 'NA'}}
+     </ion-col>
+   </ion-row>
+  
+   <ion-row>
+     <ion-col size="5"class="labelStyle">
+       Phone
+     </ion-col>
+     <ion-col size="1" >
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.phone ? profileData.phone : 'NA'}}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Alt. Phone
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.alt_phone ? profileData.alt_phone : 'NA'}}
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col size="5" class="labelStyle">
+       Email
+     </ion-col>
+     <ion-col size="1">
+       :
+     </ion-col>
+     <ion-col size="6">
+       {{profileData.email ? profileData.email : 'NA'}}
+     </ion-col>
+   </ion-row>
+   <ion-row *ngIf="headerData.year_id  < 6">
+    <ion-col size="5" class="labelStyle">
+    First Month Fee
+    </ion-col>
+    <ion-col size="1">
+    :
+    </ion-col>
+    <ion-col size="6">
+    ₹ {{(profileData.total_fee !="0" || profileData.first_m_fee !="0") ? profileData.first_m_fee :profileData.firstfee}}
+    </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="headerData.year_id < 6">
+    <ion-col size="5" class="labelStyle">
+    Total Fee
+    </ion-col>
+    <ion-col size="1">
+    :
+    </ion-col>
+    <ion-col size="6">
+    ₹ {{(profileData.total_fee !="0" || profileData.first_m_fee !="0") ? profileData.total_fee :profileData.totalfee}}
+    </ion-col>
+    </ion-row>
+ </ion-grid>
+     </div> 
+</ion-content>
+<ion-footer>
+ <app-footer></app-footer>
+</ion-footer>
